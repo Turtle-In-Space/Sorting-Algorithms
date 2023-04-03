@@ -1,14 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 
 public enum Algorithms
 {
     Invalid,
-    Bubble
+    Bubble,
+    Quick
 }
 
 
@@ -36,20 +34,12 @@ public class Workspace : MonoBehaviour
     public void Run()
     {
         int[] array = InitArray();
+
+        print("Given array: ");
         PrintArray(array);
 
-        PrintArray(algorithms[algorithmSelect.value - 1].Sort(array));
-        
-
-
-        /*
-        Debug.Log("Given array: ");
-        PrintArray(array);
-
-        Debug.Log("Sorted array: ");
-        PrintArray(algorithms[algorithmSelect.value].Sort(array));
-        */
-
+        print("Sorted array: ");
+        PrintArray(algorithms[algorithmSelect.value - 1].Sort(array));    
     }
 
     private void PrintArray(int[] array)
