@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SortingAlgorithm : MonoBehaviour
 {
     public virtual int[] Sort(int[] array)
     {
-        print("oopos");
+        print("oops this shouldn't happen");
         return null;
     }
 }
