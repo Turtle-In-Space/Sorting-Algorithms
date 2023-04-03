@@ -6,7 +6,8 @@ public enum Algorithms
 {
     Invalid,
     Bubble,
-    Quick
+    Quick,
+    Gnome
 }
 
 
@@ -25,11 +26,11 @@ public class Workspace : MonoBehaviour
         algorithms = GetComponents<SortingAlgorithm>();
     }
 
+
     public void OnInputChanged()
     {
         amountOfElements = int.Parse(input.text);
     }
-
 
     public void Run()
     {
