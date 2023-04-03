@@ -7,7 +7,8 @@ public enum Algorithms
     Invalid,
     Bubble,
     Quick,
-    Gnome
+    Gnome,
+    Bogo
 }
 
 
