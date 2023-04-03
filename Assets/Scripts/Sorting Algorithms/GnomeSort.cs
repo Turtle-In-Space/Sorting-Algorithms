@@ -24,11 +24,4 @@
 
         return array;
     }
-
-    private void Swap(int[] array, int i, int j)
-    {
-        int temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
-    }
 }

@@ -43,14 +43,4 @@
         Swap(array, i + 1, end);
         return i + 1;
     }
-
-    /*
-     * Swaps 2 positions
-     */
-    private void Swap(int[] array, int i, int j)
-    {
-        int temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
-    }
 }
