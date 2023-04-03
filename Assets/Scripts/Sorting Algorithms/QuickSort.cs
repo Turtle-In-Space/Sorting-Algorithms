@@ -1,8 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-using System;
-
-public class QuickSort : SortingAlgorithm
+﻿public class QuickSort : SortingAlgorithm
 {
     public override int[] Sort(int[] array)
     {

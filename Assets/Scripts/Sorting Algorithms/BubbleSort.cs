@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class BubbleSort : SortingAlgorithm
 {
     public override int[] Sort(int[] array)
