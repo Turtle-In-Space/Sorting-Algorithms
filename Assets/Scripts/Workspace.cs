@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 
 public enum Algorithms
@@ -15,7 +17,7 @@ public enum Algorithms
 public class Workspace : MonoBehaviour
 {
     [SerializeField] private TMP_Dropdown algorithmSelect;
-    [SerializeField] private TMP_InputField input;
+    [SerializeField] private Slider slider;
 
     private SortingAlgorithm[] algorithms;
 
@@ -27,21 +29,22 @@ public class Workspace : MonoBehaviour
         algorithms = GetComponents<SortingAlgorithm>();
     }
 
-
-    public void OnInputChanged()
-    {
-        amountOfElements = int.Parse(input.text);
-    }
-
     public void Run()
     {
+        amountOfElements = (int)slider.value;
         int[] array = InitArray();
+        VisualBox.instance.DrawPillars(array);
 
         print("Given array: ");
         PrintArray(array);
 
+        DateTime start = DateTime.Now;
+        algorithms[algorithmSelect.value - 1].Sort(array);
+        double time = (DateTime.Now - start).TotalMilliseconds;
+
         print("Sorted array: ");
-        PrintArray(algorithms[algorithmSelect.value - 1].Sort(array));    
+        PrintArray(array);
+        print("Took: " + time + " ms");
     }
 
     private void PrintArray(int[] array)
@@ -67,7 +70,7 @@ public class Workspace : MonoBehaviour
 
         for (int i = 0; i < amountOfElements; i++)
         {
-            int randPos = Random.Range(1, amountOfElements);
+            int randPos = UnityEngine.Random.Range(1, amountOfElements);
             int temp = array[i];
 
             array[i] = array[randPos];
