@@ -18,10 +18,14 @@ public class Workspace : MonoBehaviour
 {
     [SerializeField] private TMP_Dropdown algorithmSelect;
     [SerializeField] private Slider slider;
+    [SerializeField] private TextMeshProUGUI elementNumber;
+    [SerializeField] private TextMeshProUGUI sortTime;
 
     private SortingAlgorithm[] algorithms;
 
     private int amountOfElements;
+    private int[] array;
+
 
 
     private void Awake()
@@ -30,53 +34,42 @@ public class Workspace : MonoBehaviour
     }
 
     public void Run()
-    {
-        amountOfElements = (int)slider.value;
-        int[] array = InitArray();
-        VisualBox.instance.DrawPillars(array);
-
-        print("Given array: ");
-        PrintArray(array);
-
+    {                      
         DateTime start = DateTime.Now;
         algorithms[algorithmSelect.value - 1].Sort(array);
         double time = (DateTime.Now - start).TotalMilliseconds;
 
-        print("Sorted array: ");
-        PrintArray(array);
-        print("Took: " + time + " ms");
+        VisualBox.instance.DrawPillars(array);
+
+        sortTime.text = "TIME: " + time + " ms";
     }
 
-    private void PrintArray(int[] array)
+    public void OnValueChanged()
     {
-        string temp = "";
-
-        for (int i = 0; i < array.Length; i++)
-        {
-            temp += array[i] + " ";
-        }
-
-        print(temp);
+        amountOfElements = (int)slider.value;
+        elementNumber.text = slider.value.ToString();
+        array = InitArray(amountOfElements);
+        VisualBox.instance.DrawPillars(array);
     }
 
-    private int[] InitArray()
+    private int[] InitArray(int elements)
     {
-        int[] array = new int[amountOfElements];
+        int[] _array = new int[elements];
 
-        for (int i = 0; i < amountOfElements; i++)
+        for (int i = 0; i < elements; i++)
         {
-            array[i] = i + 1;
+            _array[i] = i + 1;
         }
 
-        for (int i = 0; i < amountOfElements; i++)
+        for (int i = 0; i < elements; i++)
         {
-            int randPos = UnityEngine.Random.Range(1, amountOfElements);
-            int temp = array[i];
+            int randPos = UnityEngine.Random.Range(1, elements);
+            int temp = _array[i];
 
-            array[i] = array[randPos];
-            array[randPos] = temp;
+            _array[i] = _array[randPos];
+            _array[randPos] = temp;
         }
 
-        return array;
+        return _array;
     }
 }

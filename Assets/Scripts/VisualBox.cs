@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class VisualBox : MonoBehaviour
 {
     public static VisualBox instance;
@@ -10,39 +11,53 @@ public class VisualBox : MonoBehaviour
 
     private Transform pillarParent;
     private GameObject[] pillars;
+    private bool[] activePillars;
 
-    private float boxWidth = 570f;
-    private float maxPillarHeight = 210f;
+    private readonly float boxWidth = 570f;
+    private readonly float maxPillarHeight = 210f;
+    private readonly int maxPillars = 1000;
 
 
     private void Awake()
     {
-        instance = this;        
+        instance = this;
+        pillars = new GameObject[maxPillars];
+        activePillars = new bool[maxPillars];
     }
 
     private void Start()
     {
         pillarParent = transform.GetChild(1);
+        InitPillars();
     }
 
     public void DrawPillars(int[] array)
     {
-        pillars = new GameObject[array.Length];
-        ClearBox();
-
         float pillarWidth = boxWidth / array.Length;
 
+        //Puts pillar in correct pos and correct size
         for (int i = 0; i < array.Length; i++)
         {
-            Vector3 position = new(pillarWidth * i + pillarWidth/2, 0, 0);
+            GameObject pillar = pillars[i];
 
+            Vector3 position = new(pillarWidth * i + pillarWidth / 2, 0, 0);
             float pillarHeight = maxPillarHeight - (maxPillarHeight * (array.Length - array[i]) / array.Length);
 
-            GameObject pillar = Instantiate(pillarPrefab, pillarParent.TransformPoint(position), Quaternion.identity, pillarParent);            
+            pillar.transform.position = pillarParent.TransformPoint(position);
             pillar.GetComponent<Pillar>().SetSize(pillarWidth, pillarHeight);
-            pillars[i] = pillar;
+            activePillars[i] = true;
+        }
+
+        //Removes unused pillars
+        for (int i = array.Length; i < maxPillars; i++)
+        {
+            GameObject pillar = pillars[i];
+
+            pillar.transform.position = new Vector2(0, 0);
+            pillar.GetComponent<Pillar>().SetSize(0, 0);
         }
     }
+    
 
     public void SwapPillars(int i, int j)
     {
@@ -53,11 +68,11 @@ public class VisualBox : MonoBehaviour
         pillars[j].transform.position = pillarParent.TransformPoint(new(positionI.x, positionJ.y));
     }
 
-    private void ClearBox()
-    {
-        foreach (Transform pillar in pillarParent)
+    private void InitPillars()
+    {        
+        for (int i = 0; i < maxPillars; i++)
         {
-            Destroy(pillar.gameObject);
+            pillars[i] = Instantiate(pillarPrefab, pillarParent.position, Quaternion.identity, pillarParent);
         }
     }
 }
