@@ -8,32 +8,29 @@ public class VisualBox : MonoBehaviour
     public static VisualBox instance;
 
     [SerializeField] private GameObject pillarPrefab;
+    [SerializeField] private Transform pillarParent;
 
-    private Transform pillarParent;
     private GameObject[] pillars;
     private bool[] activePillars;
 
-    private readonly float boxWidth = 570f;
-    private readonly float maxPillarHeight = 210f;
-    private readonly int maxPillars = 1000;
+    private const float BOX_WIDTH = 540;
+    private const float MAX_PILLAR_HEIGHT = 265;
+    private const int MAX_PILLARS = 1000;
 
 
     private void Awake()
     {
         instance = this;
-        pillars = new GameObject[maxPillars];
-        activePillars = new bool[maxPillars];
-    }
+        pillars = new GameObject[MAX_PILLARS];
+        activePillars = new bool[MAX_PILLARS];
 
-    private void Start()
-    {
-        pillarParent = transform.GetChild(1);
         InitPillars();
     }
 
+
     public void DrawPillars(int[] array)
     {
-        float pillarWidth = boxWidth / array.Length;
+        float pillarWidth = BOX_WIDTH / array.Length;
 
         //Puts pillar in correct pos and correct size
         for (int i = 0; i < array.Length; i++)
@@ -41,7 +38,7 @@ public class VisualBox : MonoBehaviour
             GameObject pillar = pillars[i];
 
             Vector3 position = new(pillarWidth * i + pillarWidth / 2, 0, 0);
-            float pillarHeight = maxPillarHeight - (maxPillarHeight * (array.Length - array[i]) / array.Length);
+            float pillarHeight = MAX_PILLAR_HEIGHT - (MAX_PILLAR_HEIGHT * (array.Length - array[i]) / array.Length);
 
             pillar.transform.position = pillarParent.TransformPoint(position);
             pillar.GetComponent<Pillar>().SetSize(pillarWidth, pillarHeight);
@@ -49,7 +46,7 @@ public class VisualBox : MonoBehaviour
         }
 
         //Removes unused pillars
-        for (int i = array.Length; i < maxPillars; i++)
+        for (int i = array.Length; i < MAX_PILLARS; i++)
         {
             GameObject pillar = pillars[i];
 
@@ -70,7 +67,7 @@ public class VisualBox : MonoBehaviour
 
     private void InitPillars()
     {        
-        for (int i = 0; i < maxPillars; i++)
+        for (int i = 0; i < MAX_PILLARS; i++)
         {
             pillars[i] = Instantiate(pillarPrefab, pillarParent.position, Quaternion.identity, pillarParent);
         }
