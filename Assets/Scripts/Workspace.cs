@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 
 public enum Algorithms
@@ -15,11 +17,15 @@ public enum Algorithms
 public class Workspace : MonoBehaviour
 {
     [SerializeField] private TMP_Dropdown algorithmSelect;
-    [SerializeField] private TMP_InputField input;
+    [SerializeField] private Slider slider;
+    [SerializeField] private TextMeshProUGUI elementNumber;
+    [SerializeField] private TextMeshProUGUI sortTime;
 
     private SortingAlgorithm[] algorithms;
 
     private int amountOfElements;
+    private int[] array;
+
 
 
     private void Awake()
@@ -27,53 +33,43 @@ public class Workspace : MonoBehaviour
         algorithms = GetComponents<SortingAlgorithm>();
     }
 
-
-    public void OnInputChanged()
-    {
-        amountOfElements = int.Parse(input.text);
-    }
-
     public void Run()
-    {
-        int[] array = InitArray();
+    {                      
+        DateTime start = DateTime.Now;
+        algorithms[algorithmSelect.value - 1].Sort(array);
+        double time = (DateTime.Now - start).TotalMilliseconds;
 
-        print("Given array: ");
-        PrintArray(array);
+        VisualBox.instance.DrawPillars(array);
 
-        print("Sorted array: ");
-        PrintArray(algorithms[algorithmSelect.value - 1].Sort(array));    
+        sortTime.text = "TIME: " + time + " ms";
     }
 
-    private void PrintArray(int[] array)
+    public void OnValueChanged()
     {
-        string temp = "";
-
-        for (int i = 0; i < array.Length; i++)
-        {
-            temp += array[i] + " ";
-        }
-
-        print(temp);
+        amountOfElements = (int)slider.value;
+        elementNumber.text = slider.value.ToString();
+        array = InitArray(amountOfElements);
+        VisualBox.instance.DrawPillars(array);
     }
 
-    private int[] InitArray()
+    private int[] InitArray(int elements)
     {
-        int[] array = new int[amountOfElements];
+        int[] _array = new int[elements];
 
-        for (int i = 0; i < amountOfElements; i++)
+        for (int i = 0; i < elements; i++)
         {
-            array[i] = i + 1;
+            _array[i] = i + 1;
         }
 
-        for (int i = 0; i < amountOfElements; i++)
+        for (int i = 0; i < elements; i++)
         {
-            int randPos = Random.Range(1, amountOfElements);
-            int temp = array[i];
+            int randPos = UnityEngine.Random.Range(1, elements);
+            int temp = _array[i];
 
-            array[i] = array[randPos];
-            array[randPos] = temp;
+            _array[i] = _array[randPos];
+            _array[randPos] = temp;
         }
 
-        return array;
+        return _array;
     }
 }
