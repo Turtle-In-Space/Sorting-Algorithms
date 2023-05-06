@@ -1,6 +1,6 @@
 ﻿public class QuickSort : SortingAlgorithm
 {
-    public override int[] Sort(int[] array)
+    protected override int[] Sort(int[] array)
     {
         _QuickSort(array, 0, array.Length - 1);
 

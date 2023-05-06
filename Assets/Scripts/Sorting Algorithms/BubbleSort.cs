@@ -1,6 +1,11 @@
 public class BubbleSort : SortingAlgorithm
 {
-    public override int[] Sort(int[] array)
+    protected override int[] Sort(int[] array)
+    {
+        return _BubbleSort(array);
+    }
+
+    private int[] _BubbleSort(int[] array)
     {
         int len = array.Length;
 

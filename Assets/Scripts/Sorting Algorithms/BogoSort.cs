@@ -3,13 +3,13 @@
 
 public class BogoSort : SortingAlgorithm
 {
-    public override int[] Sort(int[] array)
+
+    protected override int[] Sort(int[] array)
     {
         _BogoSort(array, array.Length);
 
         return array;
     }
-
 
     private void _BogoSort(int[] array, int len)
     {

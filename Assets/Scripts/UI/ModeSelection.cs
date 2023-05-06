@@ -1,29 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ModeSelection : MonoBehaviour
 {
     public static ModeSelection instance;
 
-    public bool VisualMode => visualMode;
+    [SerializeField] private Toggle VisualToggle, TimedToggle;
+
+    public bool VisualMode => _visualMode;
     public bool TimedMode => _timedMode;
 
-    private bool visualMode;
+    private bool _visualMode;
     private bool _timedMode;
 
     private void Awake()
     {
-        instance = this;    
+        instance = this;
+        _visualMode = VisualToggle.isOn;
+        _timedMode = TimedToggle.isOn;
     }
 
     public void SetVisualMode(bool value)
     {
-        visualMode = value;
+        _visualMode = value;
     }
 
     public void SetTimedMode(bool value)
     {
         _timedMode = value;
+        TimerSettings.instance.ViewTimerSettings(value);
     }
 }

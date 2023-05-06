@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class SortingAlgorithm : MonoBehaviour
 {
-    public virtual int[] Sort(int[] array)
+    public virtual int[] RunAlgorithm(int[] array)
     {
         if (ModeSelection.instance.VisualMode)
         {
-            return VisualSort();
+            return VisualSort(array);
         }
         else if (ModeSelection.instance.TimedMode)
         {
-            return TimedSort();
+            return TimedSort(array);
         }
         else
         {
@@ -21,14 +21,32 @@ public class SortingAlgorithm : MonoBehaviour
         }
     }
 
-    protected virtual int[] VisualSort()
+    protected virtual int[] VisualSort(int[] array)
     {
         throw new NotImplementedException();
     }
 
-    protected virtual int[] TimedSort()
+    protected virtual int[] TimedSort(int[] array)
     {
-        throw new NotImplementedException();
+        int[] _array = new int[array.Length];
+
+        DateTime start = DateTime.Now;
+        for (int i = 0; i < TimerSettings.instance.Iterations; i++)
+        {
+            array.CopyTo(_array, 0);
+            Sort(_array);
+        }
+        DateTime end = DateTime.Now;
+
+        double time = end.Subtract(start).TotalSeconds;
+        TimerSettings.instance.DisplayResult(time);
+
+        return _array;
+    }
+
+    protected virtual int[] Sort(int[] array)
+    {
+        return null;
     }
 
     protected void Swap(int[] array, int i, int j)

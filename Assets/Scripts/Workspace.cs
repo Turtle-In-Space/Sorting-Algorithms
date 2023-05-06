@@ -8,7 +8,6 @@ public class Workspace : MonoBehaviour
     public static Workspace instance;
 
     [SerializeField] private GameObject algorithmsParent;
-    [SerializeField] private TMP_Dropdown algorithmDropdown;
 
     private int[] array;
     private int elementCount;
@@ -21,7 +20,7 @@ public class Workspace : MonoBehaviour
 
     public void Run()
     {
-        DropDownController.instance.GetSortingAlgorithm().Sort(array);
+        array = DropDownController.instance.GetSortingAlgorithm().RunAlgorithm(array);
         VisualBox.instance.DrawPillars(array);
     }
 

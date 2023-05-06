@@ -1,7 +1,16 @@
-﻿public class GnomeSort : SortingAlgorithm
+﻿using UnityEngine;
+using System;
+
+public class GnomeSort : SortingAlgorithm
 {
-    public override int[] Sort(int[] array)
+    protected override int[] Sort(int[] array)
     {
+        return _GnomeSort(array);
+    }
+
+    private int[] _GnomeSort(int[] array)
+    {
+        array.CopyTo(array, 0);
         int len = array.Length;
         int index = 0;
 
