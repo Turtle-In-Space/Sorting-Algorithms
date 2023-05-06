@@ -66,7 +66,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 256
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -116,7 +116,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Square
+      name: UISheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -130,20 +130,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1bd8ec8c4fb244e949f23a01aefb0d97
-      internalID: 1902957575
+      spriteID: e76948ea9764b4cb5a3cd662eb09aca0
+      internalID: 1424487040
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ViewIcon
+      name: UISheet_1
       rect:
         serializedVersion: 2
-        x: 46
-        y: 184
-        width: 22
-        height: 14
+        x: 42
+        y: 160
+        width: 40
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -151,20 +151,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e6915ac558d3c44b49d136793e92a12d
-      internalID: 1338432484
+      spriteID: d9f2162188316408a8bceb84f9194095
+      internalID: -1215397932
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ShuffleIcon
+      name: UISheet_2
       rect:
         serializedVersion: 2
-        x: 75
-        y: 177
-        width: 22
-        height: 20
+        x: 84
+        y: 160
+        width: 40
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -172,35 +172,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c54cd4c6d359349fe94285dc2bdbedd8
-      internalID: 1685813077
+      spriteID: 8be090509085e4f8cbb3c4fd078b1ab6
+      internalID: -1597520291
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TimerIcon
-      rect:
-        serializedVersion: 2
-        x: 51
-        y: 161
-        width: 13
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3a8c3bf027b184926be1027b3f8bfd97
-      internalID: 482730792
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rectangle
+      name: UISheet_3
       rect:
         serializedVersion: 2
         x: 0
@@ -214,8 +193,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cb567292f569f4e3a91d0c745446f1c2
-      internalID: -768129012
+      spriteID: efd7461f72f6f4373b77c034d90236b3
+      internalID: -1947733893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UISheet_4
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 117
+        width: 100
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 229db6c74e2d74f8ab63e7c9d315d64d
+      internalID: 683126641
       vertices: []
       indices: 
       edges: []
@@ -224,8 +224,92 @@ TextureImporter:
       name: UISheet_5
       rect:
         serializedVersion: 2
-        x: 5
-        y: 54
+        x: 3
+        y: 91
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 353c881f9826b4ae38091434171317f7
+      internalID: -1666462320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UISheet_6
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 92
+        width: 22
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e74849a30cc764923b5a0b3195274eaf
+      internalID: 380073440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UISheet_7
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 88
+        width: 22
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab248d79addda4f108e967132c0039ff
+      internalID: -914130518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UISheet_8
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 75
+        width: 100
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30252c32e401544fe9461a85bad8c7d2
+      internalID: 1385505892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UISheet_9
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 3
         width: 20
         height: 30
       alignment: 0
@@ -235,18 +319,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c57856d568d84d28aec77c6a6af030c
-      internalID: -1450998489
+      spriteID: fa72672a4bdff4882998eacaa4a94905
+      internalID: 268600687
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UISheet_6
+      name: UISheet_10
       rect:
         serializedVersion: 2
-        x: 35
-        y: 39
+        x: 29
+        y: 2
         width: 100
         height: 49
       alignment: 0
@@ -256,8 +340,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ae6274f8ecd84b778c7f4cce7054d85
-      internalID: -1971483535
+      spriteID: dbeeaafb0bd4244499299715c7d6a1c7
+      internalID: -870966688
       vertices: []
       indices: 
       edges: []
@@ -273,13 +357,17 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      UISheet_6: -1971483535
-      ShuffleIcon: 1685813077
-      TimerIcon: 482730792
-      Rectangle: -768129012
-      ViewIcon: 1338432484
-      UISheet_5: -1450998489
-      Square: 1902957575
+      UISheet_0: 1424487040
+      UISheet_6: 380073440
+      UISheet_8: 1385505892
+      UISheet_10: -870966688
+      UISheet_2: -1597520291
+      UISheet_3: -1947733893
+      UISheet_9: 268600687
+      UISheet_7: -914130518
+      UISheet_4: 683126641
+      UISheet_5: -1666462320
+      UISheet_1: -1215397932
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
