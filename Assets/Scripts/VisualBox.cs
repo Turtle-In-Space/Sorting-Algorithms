@@ -1,7 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
+
+public enum PillarColor
+{
+    normal,
+    active,
+    compare,
+    pivot,
+    done
+}
 
 public class VisualBox : MonoBehaviour
 {
@@ -10,12 +20,20 @@ public class VisualBox : MonoBehaviour
     [SerializeField] private GameObject pillarPrefab;
     [SerializeField] private Transform pillarParent;
 
-    private GameObject[] pillars;
-    private bool[] activePillars;
-
     private const float BOX_WIDTH = 540;
     private const float MAX_PILLAR_HEIGHT = 265;
     private const int MAX_PILLARS = 1000;
+
+    private GameObject[] pillars;
+    private Color32[] pillarColors = new Color32[5] {
+        new Color32(223, 113, 38, 255), //Normal
+        new Color32(210, 64, 51, 255), //Active
+        new Color32(239, 235, 102, 255), //Compare
+        new Color32(138, 165, 219, 255), //Pivot
+        new Color32(128, 226, 42, 255) //Done
+    };
+
+    private bool[] activePillars;
 
 
     private void Awake()
@@ -23,10 +41,8 @@ public class VisualBox : MonoBehaviour
         instance = this;
         pillars = new GameObject[MAX_PILLARS];
         activePillars = new bool[MAX_PILLARS];
-
         InitPillars();
     }
-
 
     public void DrawPillars(int[] array)
     {
@@ -55,14 +71,22 @@ public class VisualBox : MonoBehaviour
         }
     }
     
-
     public void SwapPillars(int i, int j)
     {
         Vector3 positionI = pillars[i].transform.position;
         Vector3 positionJ = pillars[j].transform.position;
 
-        pillars[i].transform.position = pillarParent.TransformPoint(pillars[i].transform.position = new(positionJ.x, positionI.y));
-        pillars[j].transform.position = pillarParent.TransformPoint(new(positionI.x, positionJ.y));
+        pillars[i].transform.position = new(positionJ.x, positionI.y);
+        pillars[j].transform.position = new(positionI.x, positionJ.y);
+
+        GameObject temp = pillars[i];
+        pillars[i] = pillars[j];
+        pillars[j] = temp;
+    }
+
+    public void ChangePillarColor(int index, PillarColor color)
+    {
+        pillars[index].GetComponent<Image>().color = pillarColors[(int)color];
     }
 
     private void InitPillars()

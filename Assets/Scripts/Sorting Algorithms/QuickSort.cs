@@ -30,7 +30,7 @@
         int pivot = array[end];
         int i = start - 1;
 
-        for (int j = start; j <= end - 1; j++)
+        for (int j = start; j <= end - 1; ++j)
         {
             if (array[j] < pivot)
             {

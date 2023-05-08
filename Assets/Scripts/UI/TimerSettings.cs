@@ -56,15 +56,6 @@ public class TimerSettings : MonoBehaviour
 
     public void ViewTimerSettings(bool value)
     {
-        if (value)
-        {
-            DisplayResult(0);
-            animator.SetTrigger("Show");
-        }
-        else
-        {
-            animator.SetTrigger("Hide");
-        }
-        
+        animator.SetBool("isShowing", value);        
     }
 }

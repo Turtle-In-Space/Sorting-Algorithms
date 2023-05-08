@@ -18,13 +18,15 @@ public class ModeSelection : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        _visualMode = VisualToggle.isOn;
-        _timedMode = TimedToggle.isOn;
+
+        SetTimedMode(TimedToggle.isOn);
+        SetVisualMode(VisualToggle.isOn);
     }
 
     public void SetVisualMode(bool value)
     {
         _visualMode = value;
+        VisualSettings.instance.ViewVisualSettings(value);
     }
 
     public void SetTimedMode(bool value)

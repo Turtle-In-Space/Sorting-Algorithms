@@ -1,32 +1,30 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 
 public class SortingAlgorithm : MonoBehaviour
 {
-    public virtual int[] RunAlgorithm(int[] array)
+    public virtual void RunAlgorithm(int[] array)
     {
         if (ModeSelection.instance.VisualMode)
         {
-            return VisualSort(array);
+            VisualSort(array);
         }
         else if (ModeSelection.instance.TimedMode)
         {
-            return TimedSort(array);
-        }
-        else
-        {
-            Debug.LogError("Nej nu blev de allt fel");
-            return null;
+            int[] sorted = TimedSort(array);
+            VisualBox.instance.DrawPillars(sorted);
         }
     }
 
-    protected virtual int[] VisualSort(int[] array)
+    protected void VisualSort(int[] array)
     {
-        throw new NotImplementedException();
+        IEnumerator coroutine = ShowSteps(array, new WaitForSeconds(VisualSettings.instance.TimeStep));
+        StartCoroutine(coroutine);
     }
 
-    protected virtual int[] TimedSort(int[] array)
+    protected int[] TimedSort(int[] array)
     {
         int[] _array = new int[array.Length];
 
@@ -46,7 +44,12 @@ public class SortingAlgorithm : MonoBehaviour
 
     protected virtual int[] Sort(int[] array)
     {
-        return null;
+        throw new NotImplementedException();
+    }
+
+    protected virtual IEnumerator ShowSteps(int[] array, WaitForSeconds timeStep)
+    {
+        throw new NotImplementedException();
     }
 
     protected void Swap(int[] array, int i, int j)

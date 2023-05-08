@@ -20,8 +20,7 @@ public class Workspace : MonoBehaviour
 
     public void Run()
     {
-        array = DropDownController.instance.GetSortingAlgorithm().RunAlgorithm(array);
-        VisualBox.instance.DrawPillars(array);
+        DropDownController.instance.GetSortingAlgorithm().RunAlgorithm(array);
     }
 
     public void UpdateElementCount(int value)

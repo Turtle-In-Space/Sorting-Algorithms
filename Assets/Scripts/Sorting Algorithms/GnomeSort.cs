@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using System.Collections;
 
 public class GnomeSort : SortingAlgorithm
 {
@@ -10,7 +11,6 @@ public class GnomeSort : SortingAlgorithm
 
     private int[] _GnomeSort(int[] array)
     {
-        array.CopyTo(array, 0);
         int len = array.Length;
         int index = 0;
 
