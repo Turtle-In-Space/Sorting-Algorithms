@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System.Threading.Tasks;
 using UnityEngine;
 
 
@@ -12,15 +12,22 @@ public class BogoSort : SortingAlgorithm
         return array;
     }
 
-    protected override IEnumerator ShowSteps(int[] array, WaitForSeconds timeStep)
+    protected override async void VisualSort(int[] array, int timeStep)
+    {
+        await VisualBogoSort(array, timeStep);
+    }
+
+    
+    protected async Task VisualBogoSort(int[] array, int timeStep)
     {
         while (!isSorted(array, array.Length))
         {
             Shuffle(array, array.Length);
             VisualBox.instance.DrawPillars(array);
-            yield return timeStep;
+            await Task.Delay(timeStep);
         }
     }
+    
 
     private void _BogoSort(int[] array, int len)
     {

@@ -85,8 +85,8 @@ public class VisualBox : MonoBehaviour
     }
 
     public void ChangePillarColor(int index, PillarColor color)
-    {
-        pillars[index].GetComponent<Image>().color = pillarColors[(int)color];
+    {        
+         pillars[index].GetComponent<Image>().color = pillarColors[(int)color];        
     }
 
     private void InitPillars()

@@ -5,16 +5,16 @@ public class VisualSettings : MonoBehaviour
 {
     public static VisualSettings instance;
 
-    public float TimeStep => _timeStep;
+    public int TimeStep => _timeStep;
 
     [SerializeField] private TMP_InputField timeStepInput;
 
     private Animator animator;
 
-    private const float MAX_TIME_STEP = 2f;
-    private const float MIN_TIME_STEP = 0.01f;
+    private const int MAX_TIME_STEP = 1000;
+    private const int MIN_TIME_STEP = 0;
 
-    private float _timeStep = MIN_TIME_STEP;
+    private int _timeStep = 200;
 
 
     private void Awake()
@@ -25,7 +25,7 @@ public class VisualSettings : MonoBehaviour
 
     public void SetTimeStep(string value)
     {
-        if (float.TryParse(value, out _timeStep))
+        if (int.TryParse(value, out _timeStep))
         {
             if (_timeStep > MAX_TIME_STEP)
             {

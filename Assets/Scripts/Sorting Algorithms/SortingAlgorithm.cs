@@ -1,5 +1,5 @@
 using System;
-using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 
 
@@ -9,7 +9,7 @@ public class SortingAlgorithm : MonoBehaviour
     {
         if (ModeSelection.instance.VisualMode)
         {
-            VisualSort(array);
+            VisualSort(array, VisualSettings.instance.TimeStep);
         }
         else if (ModeSelection.instance.TimedMode)
         {
@@ -18,10 +18,9 @@ public class SortingAlgorithm : MonoBehaviour
         }
     }
 
-    protected void VisualSort(int[] array)
+    protected virtual async void VisualSort(int[] array, int timeStep)
     {
-        IEnumerator coroutine = ShowSteps(array, new WaitForSeconds(VisualSettings.instance.TimeStep));
-        StartCoroutine(coroutine);
+        throw new NotImplementedException();
     }
 
     protected int[] TimedSort(int[] array)
@@ -47,16 +46,20 @@ public class SortingAlgorithm : MonoBehaviour
         throw new NotImplementedException();
     }
 
-    protected virtual IEnumerator ShowSteps(int[] array, WaitForSeconds timeStep)
-    {
-        throw new NotImplementedException();
-    }
-
     protected void Swap(int[] array, int i, int j)
     {
         int temp = array[i];
         array[i] = array[j];
         array[j] = temp;
+    }
+
+    protected async Task VisualSwap(int[] array, int i, int j, int timeStep)
+    {
+        VisualBox.instance.SwapPillars(i, j);
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+        await Task.Delay(timeStep);
     }
 }
 
